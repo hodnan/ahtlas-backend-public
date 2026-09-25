@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Traits\TimezoneTrait;
+
+class {{ class }} extends Model
+{
+    use HasFactory, TimezoneTrait;
+
+   // protected $connection = '';
+   // protected $table = '';
+   // public $incrementing = false;
+
+   // protected $fillable = [];    
+   // protected function casts(): array {return [];}
+   // public $appends = [];
+}
