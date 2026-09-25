@@ -1,5 +1,9 @@
 # Ahtlas — Backend
 
+<p align="center">
+  <img src="docs/screenshots/logo.png" alt="Ahtlas Web Application" width="420">
+</p>
+
 O Ahtlas é uma plataforma corporativa de gestão interna que desenvolvi entre 2021 e 2025. Ela reúne, em uma única aplicação web, módulos de indicadores, remuneração variável, acompanhamento de equipes, relatórios e rotinas operacionais.
 
 Este repositório tem a API em Laravel. O frontend (Vue 3 + Vuetify 3) está no repositório `ahtlas-frontend`.
@@ -73,8 +77,32 @@ O módulo `Administration/Incentives/RV` cobre o ciclo completo de um termo:
 - **apuração**: cálculo dos resultados a partir dos KPIs (`rv:evaluation`), com encerramento mensal (`rv:evaluation-stop`);
 - **PDF**: geração dos termos e das assinaturas com Dompdf e FPDI a partir de templates Blade (`resources/views/templates/rv`).
 
+_Nas capturas, nomes de pessoas, rostos e dados do cliente foram borrados._
+
+![Lista de termos de RV](docs/screenshots/rv-termos.png)
+
+![Edição de termo: cesta, acelerador, deflator e eliminatório](docs/screenshots/rv-editar-termo.png)
+
+![PDF do termo gerado pelo backend e metadados de aprovação](docs/screenshots/rv-termo-pdf.png)
+
 ### Rotinas agendadas, filas e cargas de dados
 O agendamento fica em [routes/console.php](routes/console.php). Ele encadeia a atualização diária de usuários e da estrutura de equipes, as cargas de KPIs por colaborador e setor, as rotinas de RV e da Central de Controle, o portal de trocas de horário e a atualização de avatares. Os processos pesados (e-mails da Central de Controle, distribuição de termos, carga de arquivos de planejamento) rodam em jobs enfileirados, mantidos pelo Supervisor.
+
+### Algumas telas
+
+A interface está no repositório `ahtlas-frontend`. Estas telas consomem os dados montados pelas cargas e rotinas acima.
+
+**Hora Hora** (boletim intradiário por setor):
+
+![Boletim Hora Hora](docs/screenshots/hora-hora.png)
+
+**Intraday** (detalhe por intervalo):
+
+![Detalhe intraday](docs/screenshots/intraday.png)
+
+**Reports** (catálogo de relatórios com donos e permissões):
+
+![Catálogo de relatórios](docs/screenshots/reports.png)
 
 ### Integração com vários bancos
 Cada fonte de dados tem sua conexão: PostgreSQL com schemas `core`, `modules` e `addons` para os dados da aplicação; Oracle para a base de RH e uma base analítica; SQL Server para bases de MIS e portal; MongoDB. Os comandos de carga leem das bases de origem e gravam no PostgreSQL.
